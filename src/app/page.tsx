@@ -13,6 +13,12 @@ interface Question {
   difficulty: 'easy' | 'medium' | 'hard';
 }
 
+interface AnswerKeyItem {
+  questionId: string;
+  correctAnswer: string;
+  gradingCriteria?: string;
+}
+
 interface Exam {
   id: string;
   subject: string;
@@ -21,6 +27,7 @@ interface Exam {
   unlockTime: string;
   status: 'pending' | 'generated' | 'failed';
   questions: Question[];
+  answerKey: AnswerKeyItem[];
   createdAt: string;
 }
 
