@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getExam, saveSubmission, Submission } from '@/lib/db';
+import { getExam, saveSubmission, getSubmissions, Submission } from '@/lib/db';
 import { callMeshApi } from '@/lib/mesh';
+
+export async function GET() {
+  try {
+    const submissions = getSubmissions();
+    return NextResponse.json(submissions);
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
